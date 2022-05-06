@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.168
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Random map", "Random map\Random map.vcxproj", "{31930522-82E8-42DB-8A9E-9D8612AA3793}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{31930522-82E8-42DB-8A9E-9D8612AA3793}.Debug|x64.ActiveCfg = Debug|x64
+		{31930522-82E8-42DB-8A9E-9D8612AA3793}.Debug|x64.Build.0 = Debug|x64
+		{31930522-82E8-42DB-8A9E-9D8612AA3793}.Debug|x86.ActiveCfg = Debug|Win32
+		{31930522-82E8-42DB-8A9E-9D8612AA3793}.Debug|x86.Build.0 = Debug|Win32
+		{31930522-82E8-42DB-8A9E-9D8612AA3793}.Release|x64.ActiveCfg = Release|x64
+		{31930522-82E8-42DB-8A9E-9D8612AA3793}.Release|x64.Build.0 = Release|x64
+		{31930522-82E8-42DB-8A9E-9D8612AA3793}.Release|x86.ActiveCfg = Release|Win32
+		{31930522-82E8-42DB-8A9E-9D8612AA3793}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DDA3FA6E-98AC-41D9-AAE0-574171B2390C}
+	EndGlobalSection
+EndGlobal
