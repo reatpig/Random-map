@@ -1,20 +1,14 @@
 #include <SFML/Graphics.hpp>
-#include "C:/Users/Timofey/source/repos/Bmp/Bmp/Image.h"
-#include "Map.h"
 
+#include "Map.h"
+void render(Map& map, sf::RenderWindow& window, unsigned int mode);
 int main() {
 	sf::RenderWindow window(sf::VideoMode(WINDOW_X, WINDOW_Y,32),"Random map");
-	
 	window.setFramerateLimit(30);
+	srand(time(0));
+
 	Map map(WINDOW_X / SCALE, WINDOW_Y/ SCALE);
-	//srand(time(0));
-	map.generateLand();  
-	
-	map.generateTemperature();
-	map.generateWet();
-	//map.generateRiver();
-	map.generateBioms();
-//	map.generateRiver();
+	map.generateMap();
 
 	sf::Font font;
 	font.loadFromFile("ARIALN.TTF");
@@ -25,59 +19,51 @@ int main() {
 	text.setOutlineThickness(1);
 	text.setCharacterSize(20);
 	
-	sf::Vector2f start;
-	
+	unsigned int mode=0;
 	while (window.isOpen())
 	{
-		
 		sf::Event event;
-		window.pollEvent(event);
+		while(window.pollEvent(event))
 		{
-
 			if (event.type == sf::Event::Closed) {
-				Image image(WINDOW_X / SCALE, WINDOW_Y / SCALE);
-			
-				map.setImage(image);
-
-				image.Export("Map.bmp");
-
+				map.saveInFile("Map.jpg");
 				window.close();
 			}
-			window.clear();
-
-
-			//if (event.key.shift)
-		    map.renderBioms(window);
-			//map.renderRiver(window);
-			//map.renderTemperature(window);
-			//map.renderWet(window);
-			//map.renderLand(window);
-			
+			if (event.type == sf::Event::KeyPressed) {
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift))
+					mode=(mode+1)%4;
+			}
 			if (event.type == sf::Event::MouseMoved) {
 				sf::Vector2f mousePos = window.mapPixelToCoords(sf::Mouse::getPosition(window));
-				if(mousePos.x<0||mousePos.y<0||mousePos.x>=WINDOW_X / SCALE || mousePos.y>=WINDOW_Y / SCALE)
+				if(!(mousePos.x<0||mousePos.y<0||mousePos.x>=WINDOW_X  || mousePos.y>=WINDOW_Y ))
 				text.setString( map.getNormalInformation(mousePos));
-				text.setPosition(mousePos+sf::Vector2f(0,-20));
-				window.draw(text);
-
+				text.setPosition(mousePos+sf::Vector2f(0,-20));	
 			}
-			else if (event.type == sf::Event::MouseLeft) {
-
-			}
-			else if (event.type == sf::Event::KeyPressed) {
-				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z)) {
-					start = window.mapPixelToCoords(sf::Mouse::getPosition(window));
-
-				}
-
-				else if (sf::Keyboard::isKeyPressed(sf::Keyboard::X)) {
-					sf::Vector2f end = window.mapPixelToCoords(sf::Mouse::getPosition(window));
-					map.setFrame(start, end);
-				}
-			}
-			
+			window.clear();
+			render(map, window, mode);
+			window.draw(text);
 			window.display();
 		}
 	}
 	return 0;
+}
+
+
+void render(Map&map, sf::RenderWindow& window, unsigned int mode) {
+	switch (mode)
+	{
+	case 0:
+		map.renderBioms(window);
+		break;
+	case 1:
+		map.renderTemperature(window);
+		break;
+	case 2:
+		map.renderWet(window);
+		break;
+	case 3:
+		map.renderLand(window);
+	default:
+		break;
+	}
 }
