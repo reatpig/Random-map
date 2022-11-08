@@ -443,7 +443,7 @@ void Map::generateWet()
 		for (int r = 0; r < height; ++r) {
 			double d = (wet[i][r] * 2 + 1) / 2;
 			double x = temperature[i][r];
-			d += -2.2 * x * x + 2.2 * 1.3 * x - 0.7;
+			d += -2. * x * x + 2. * 1. * x - 0.4;
 			if (d < 0) d = 0;
 			if (d > 1) d = 1;
 			wet[i][r] = d;
@@ -465,7 +465,7 @@ void Map::generateBioms()
 				 bioms.setPixel(i, r, sf::Color(0, 0, 255 * (land[i][r] + 1) / 2));//Вода
 			 else if (temperature[i][r] > 0.55f) {
 				 if (wet[i][r] > 0.675f) bioms.setPixel(i, r, sf::Color(0, 117, 85));//Дождевой тропический лес
-				 else if (wet[i][r] > 0.43f)  bioms.setPixel(i, r, sf::Color(0, 117, 67)); //Тропический лес
+				 else if (wet[i][r] > 0.47f)  bioms.setPixel(i, r, sf::Color(0, 117, 67)); //Тропический лес
 				 else  if (wet[i][r] > 0.3f) bioms.setPixel(i, r, sf::Color(172, 167, 25));//Саванны
 				 else bioms.setPixel(i, r, sf::Color(222, 184, 135));//Пустыня
 			 }
@@ -477,7 +477,7 @@ void Map::generateBioms()
 			 }
 			 else if (temperature[i][r] > 0.23f) {
 				 if (wet[i][r] > 0.525f)bioms.setPixel(i, r, sf::Color(164, 218, 140));//Дождевой лес умеренной зоны
-				 else if (wet[i][r] > 0.265f) bioms.setPixel(i, r, sf::Color(164, 218, 68)); //Лес умеренной зоны
+				 else if (wet[i][r] > 0.395f) bioms.setPixel(i, r, sf::Color(164, 218, 68)); //Лес умеренной зоны
 				 else if (wet[i][r] > 0.005f)  bioms.setPixel(i, r, sf::Color(175, 242, 6));//Равнина
 				 else bioms.setPixel(i, r, sf::Color(222, 184, 135));//Пустыня
 			 }
